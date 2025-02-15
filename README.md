@@ -10,7 +10,8 @@ A full-stack Spotify clone built with modern web technologies. This project aims
 - Responsive UI
 
 ## Technologies Used
-- **Front-end:** React, HTML, CSS
-- **Back-end:** (To be defined)
-- **Database:** (To be defined)
-- **Other Tools:** (To be defined)
+- React
+- Node.js
+- HTML/CSS
+- JavaScript
+- 
