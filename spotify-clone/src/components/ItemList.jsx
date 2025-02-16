@@ -1,21 +1,25 @@
 import React from "react";
 import SingleItem from "./SingleItem";
 
-const ItemList = ({ title, items }) => {
+const ItemList = ({ title, items, itemsArray, path, idPath }) => {
     return (
         <div className="item-list">
             <div className="item-list__header">
                 <h2>{title} populares</h2>
-                <a href="" className="item-list__link">
+                <a href={path} className="item-list__link">
                     Mostrar tudo
                 </a>
             </div>
 
             <div className="item-list__container">
-                {Array(items)
-                    .fill()
-                    .map((_, index) => (
-                        <SingleItem key={`${title}-${index}`} />
+                {itemsArray
+                    .filter((currValue, index) => index < items)
+                    .map((currObj, index) => (
+                        <SingleItem
+                            {...currObj}
+                            idPath={idPath}
+                            key={`${title}-${index}`}
+                        />
                     ))}
             </div>
         </div>
