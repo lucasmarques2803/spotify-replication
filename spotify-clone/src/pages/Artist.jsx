@@ -1,29 +1,45 @@
 import React from "react";
 import { faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import SongList from "../components/SongList";
+import { artistArray } from "./../assets/database/artists";
+import { songsArray } from "./../assets/database/songs";
 
 const Artist = () => {
+    const { id } = useParams();
+
+    const artist = artistArray.filter(
+        (currArtist) => currArtist.id === Number(id)
+    )[0];
+
+    const artistSongs = songsArray.filter(
+        (song) => song.artist === artist.name
+    );
+
+    const randomSongIndex = Math.floor(
+        Math.random() * (artistSongs.length - 1)
+    );
+    const randomSongId = artistSongs[randomSongIndex].id;
+
     return (
         <div className="artist">
             <div
                 className="artist__header"
                 style={{
-                    backgroundImage:
-                        "linear-gradient(to bottom, var(--_shade), var(--_shade)), url(https://i.scdn.co/image/ab67618600001016909a162796dbc3629a1fadeb)",
+                    backgroundImage: `linear-gradient(to bottom, var(--_shade), var(--_shade)), url(${artist.banner})`,
                 }}
             >
-                <h2 className="artist__title">Jorge & Mateus</h2>
+                <h2 className="artist__title">{artist.name}</h2>
             </div>
 
             <div className="artist__body">
                 <h2>Populares</h2>
 
-                <SongList />
+                <SongList songs={artistSongs} />
             </div>
 
-            <Link to={`/song/1`}>
+            <Link to={`/song/${randomSongId}`}>
                 <FontAwesomeIcon
                     className="single-item__icon single-item__icon--artist"
                     icon={faCirclePlay}
