@@ -7,7 +7,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-const Player = () => {
+const Player = ({ duration }) => {
     return (
         <div className="player">
             <div className="player__controllers">
@@ -38,7 +38,7 @@ const Player = () => {
                     <div className="player__bar-progress"></div>
                 </div>
 
-                <p className="player__time">02:00</p>
+                <p className="player__time">{duration}</p>
             </div>
         </div>
     );

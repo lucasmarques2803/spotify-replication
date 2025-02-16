@@ -1,34 +1,47 @@
 import React from "react";
 import Player from "../components/Player";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { songsArray } from "../assets/database/songs";
+import { artistArray } from "../assets/database/artists";
 
 const Song = () => {
+    const { id } = useParams();
+
+    const {
+        image,
+        name,
+        duration,
+        artist: artistName,
+        audio,
+    } = songsArray.find((song) => song.id === Number(id));
+
+    const { id: artistId, image: artistImage } = artistArray.find(
+        (currArtistObj) => currArtistObj.name === artistName
+    );
+
     return (
         <div className="song">
             <div className="song__container">
                 <div className="song__image-container">
-                    <img
-                        src="https://i.scdn.co/image/ab67616d00001e022774b00531d558bc19e12a24"
-                        alt="Imagem da Música X"
-                    />
+                    <img src={image} alt={`Imagem da Música ${name}`} />
                 </div>
             </div>
 
             <div className="song__bar">
-                <Link to="/artist/1" className="song__artist-image">
+                <Link to={`/artist/${artistId}`} className="song__artist-image">
                     <img
                         width={75}
                         height={75}
-                        src="https://i.scdn.co/image/ab676161000051744dcd8a3bff84cd7703892cf4"
-                        alt="Imagem do Artista X"
+                        src={artistImage}
+                        alt={`Imagem do Artista ${artistName}`}
                     ></img>
                 </Link>
 
-                <Player />
+                <Player duration={duration} />
 
                 <div className="song__info">
-                    <p className="song__name">Última Saudade - Ao Vivo</p>
-                    <p>Henrique & Juliano</p>
+                    <p className="song__name">{name}</p>
+                    <p>{artistName}</p>
                 </div>
             </div>
         </div>
