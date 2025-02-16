@@ -243,6 +243,7 @@ img {
     background-position-y: 20%;
     background-image: linear-gradient(to bottom, var(--_shade), var(--_shade)),
         url(https://i.scdn.co/image/ab67618600001016909a162796dbc3629a1fadeb);
+    background-position-x: center;
 }
 
 .artist__title {
