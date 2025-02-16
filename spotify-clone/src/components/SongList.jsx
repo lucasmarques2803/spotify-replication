@@ -1,18 +1,30 @@
 import React from "react";
 import SongItem from "./SongItem";
+import { useState } from "react";
 
 const SongList = ({ songs }) => {
-    const items = 5;
+    const [items, setItems] = useState(5);
 
     return (
         <div className="song-list">
             {songs
+                .filter((_, index) => index < items)
                 .map((currSong, index) => (
                     <SongItem {...currSong} index={index} key={index} />
-                ))
-                .filter((_, index) => index < items)}
+                ))}
 
-            <p className="song-list__see-more">Ver mais</p>
+            {items < songs.length ? (
+                <p
+                    className="song-list__see-more"
+                    onClick={() => {
+                        setItems(items + 5);
+                    }}
+                >
+                    Ver mais
+                </p>
+            ) : (
+                <></>
+            )}
         </div>
     );
 };
