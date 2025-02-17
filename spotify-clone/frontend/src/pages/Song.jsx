@@ -1,8 +1,7 @@
 import React from "react";
 import Player from "../components/Player";
 import { Link, useParams } from "react-router-dom";
-import { songsArray } from "../assets/database/songs";
-import { artistsArray } from "../assets/database/artists";
+import { artistsArray, songsArray } from "../../api/api.js";
 
 const Song = () => {
     const { id } = useParams();
@@ -13,9 +12,9 @@ const Song = () => {
         duration,
         artist: artistName,
         audio,
-    } = songsArray.find((song) => song.id === Number(id));
+    } = songsArray.find((song) => song._id === id);
 
-    const { id: artistId, image: artistImage } = artistsArray.find(
+    const { _id: artistId, image: artistImage } = artistsArray.find(
         (currArtistObj) => currArtistObj.name === artistName
     );
 
@@ -24,12 +23,12 @@ const Song = () => {
     const randomSongIndex = Math.floor(
         Math.random() * (artistSongs.length - 1)
     );
-    const randomSongId = artistSongs[randomSongIndex].id;
+    const randomSongId = artistSongs[randomSongIndex]._id;
 
     const randomSongIndex2 = Math.floor(
         Math.random() * (artistSongs.length - 1)
     );
-    const randomSongId2 = artistSongs[randomSongIndex2].id;
+    const randomSongId2 = artistSongs[randomSongIndex2]._id;
 
     return (
         <div className="song">
