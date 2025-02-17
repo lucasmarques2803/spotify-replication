@@ -17,4 +17,4 @@ A full-stack Spotify clone built with modern web technologies. This project aims
 -   HTML/CSS
 -   JavaScript
 -   Express
--
+-   MongoDB
