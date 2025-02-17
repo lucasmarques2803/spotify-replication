@@ -2,7 +2,7 @@ import React from "react";
 import Player from "../components/Player";
 import { Link, useParams } from "react-router-dom";
 import { songsArray } from "../assets/database/songs";
-import { artistArray } from "../assets/database/artists";
+import { artistsArray } from "../assets/database/artists";
 
 const Song = () => {
     const { id } = useParams();
@@ -15,7 +15,7 @@ const Song = () => {
         audio,
     } = songsArray.find((song) => song.id === Number(id));
 
-    const { id: artistId, image: artistImage } = artistArray.find(
+    const { id: artistId, image: artistImage } = artistsArray.find(
         (currArtistObj) => currArtistObj.name === artistName
     );
 
