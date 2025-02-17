@@ -1,6 +1,5 @@
 import express from "express";
-import { artistsArray } from "../../frontend/src/assets/database/artists.js";
-import { songsArray } from "../../frontend/src/assets/database/songs.js";
+import { db } from "./connect.js";
 
 const app = express();
 const PORT = 3000;
@@ -9,12 +8,12 @@ app.get("/", (request, response) => {
     response.send("Just '/artists' and '/songs' are available");
 });
 
-app.get("/artists", (request, response) => {
-    response.send(artistsArray);
+app.get("/artists", async (request, response) => {
+    response.send(await db.collection("artists").find({}).toArray());
 });
 
-app.get("/songs", (request, response) => {
-    response.send(songsArray);
+app.get("/songs", async (request, response) => {
+    response.send(await db.collection("songs").find({}).toArray());
 });
 
 app.listen(PORT, () => {
