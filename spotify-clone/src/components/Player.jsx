@@ -7,11 +7,11 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-const Player = ({ duration }) => {
+const Player = ({ duration, randomSongId, randomSongId2 }) => {
     return (
         <div className="player">
             <div className="player__controllers">
-                <Link to="/song/2">
+                <Link to={`/song/${randomSongId}`}>
                     <FontAwesomeIcon
                         className="player__icon"
                         icon={faBackwardStep}
@@ -23,7 +23,7 @@ const Player = ({ duration }) => {
                     icon={faCirclePlay}
                 />
 
-                <Link to="/song/3">
+                <Link to={`/song/${randomSongId2}`}>
                     <FontAwesomeIcon
                         className="player__icon"
                         icon={faForwardStep}
