@@ -50,6 +50,7 @@ const Song = () => {
 
                 <Player
                     duration={duration}
+                    audio={audio}
                     randomSongId={randomSongId}
                     randomSongId2={randomSongId2}
                 />
